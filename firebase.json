@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "Angular-Project-Plataform",
+      "public": "dist/Angular-Project-Plataform",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-project-platform": {
+      "hosting": {
+        "Angular-Project-Plataform": [
+          "angular-project-platform"
+        ]
+      }
+    }
+  }
+}

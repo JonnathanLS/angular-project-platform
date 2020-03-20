@@ -118,8 +118,13 @@
               "devServerTarget": "Angular-Project-Plataform:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "Angular-Project-Plataform"
 }
