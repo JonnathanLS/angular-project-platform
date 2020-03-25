@@ -1,4 +1,5 @@
-<div id='background-bar'>
-    <div [ngStyle]="objStyle" [class]='type' ></div>
+<div *ngIf='!isDone' id='background-bar' [ngClass]="objClass">
+    <div [style.width.%]="percent" [class]='type' ></div>
 </div>
+
 

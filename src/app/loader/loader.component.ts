@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { interval } from 'rxjs';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-loader',
@@ -7,14 +9,22 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class LoaderComponent implements OnInit {
   type: string = 'bar';
-  percent: number = 10;
-  objStyle: Object = {
-    'width': this.percent + '%'
+  percent: number;
+  isDone: boolean = false;
+  objClass = {
+    'fade-out': false
   }
   constructor() { }
 
   ngOnInit() {
-    // this.percentProgress = 'width: ' + this.percent + '%';
+    const rxjsInterval = interval(30);
+    const loading = rxjsInterval.pipe(take(101));
+    loading.subscribe(num => {
+      this.percent = num;
+      if(num >= 100) {
+        this.objClass['fade-out'] = true;
+        setTimeout(()=> this.isDone = true, 1999);
+      }
+    });
   }
-
 }
