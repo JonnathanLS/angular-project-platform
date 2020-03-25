@@ -1,0 +1,16 @@
+#background-bar, .bar {
+    height: 7px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#background-bar {
+    width: 100%;
+    background-color: lightgray;
+}
+
+.bar {
+    background-color: teal;
+    margin: 0;
+}
