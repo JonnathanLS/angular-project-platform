@@ -1,5 +1,7 @@
-<div *ngIf='!isDone' id='background-bar' [ngClass]="objClass">
+<!-- <div *ngIf='!isDone' id='background-bar' [ngClass]="objClass">
     <div [style.width.%]="percent" [class]='type' ></div>
-</div>
+</div> -->
+<hr [ngClass]="loader$ | async">
 
 
+<button (click)='request()'>Request</button>

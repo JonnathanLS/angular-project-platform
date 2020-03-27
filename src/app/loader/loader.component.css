@@ -1,44 +1,53 @@
-#background-bar, .bar {
-    height: 7px;
-    position: fixed;
-    top: 0;
-    left: 0;
+.loader-loading, .loader-ending {
+   margin: 0;
+   background: linear-gradient(270deg, green,steelblue, slategray);
+   height: 0.2em;  
 }
+.loader-loading{
+   animation: progress-loading 5s ease-in;
+}
+@keyframes progress-loading {
+   0% { width: 0; }
+   100% { width: 100%; }
+}
+.loader-ending {
+   /* '1s' is related to the time configured on the interceptor */
+   animation: progress-ending 1s ease; 
+}
+@keyframes progress-ending {
+   0% { opacity: 1; }
+   100% { opacity: 0; }
+}
+.loader-stopped{
+   display: none;
+}
+/* KeyFrames usage recommendation 
 
-#background-bar {
-    width: 100%;
-    background-color: lightgray;
+.your-class {
+    animation: you-key-frames ease 2s;
+    -webkit-animation: you-key-frames ease 2s;
+    -moz-animation: you-key-frames ease 2s;
+    -o-animation: you-key-frames ease 2s;
+    -ms-animation: you-key-frames ease 2s;
 }
-
-.bar {
-    background-color: teal;
-    margin: 0;
-}
-
-.fade-out {
-    animation: fadeOut ease 2s;
-    -webkit-animation: fadeOut ease 2s;
-    -moz-animation: fadeOut ease 2s;
-    -o-animation: fadeOut ease 2s;
-    -ms-animation: fadeOut ease 2s;
-}
-@keyframes fadeOut {
+@keyframes you-key-frames {
     0% { opacity:1; }
     100% { opacity:0; }
 }
-@-moz-keyframes fadeOut {
+@-moz-keyframes you-key-frames {
     0% { opacity:1; }
     100% { opacity:0; }
 }
-@-webkit-keyframes fadeOut {
+@-webkit-keyframes you-key-frames {
     0% { opacity:1; }
     100% { opacity:0; }
 }
-@-o-keyframes fadeOut {
+@-o-keyframes you-key-frames {
     0% { opacity:1; }
     100% { opacity:0; }
 }
-@-ms-keyframes fadeOut {
+@-ms-keyframes you-key-frames {
     0% { opacity:1; }
     100% { opacity:0; }
-}
+} 
+*/
