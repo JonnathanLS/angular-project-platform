@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
-import { HttpRequest, HttpClient } from '@angular/common/http';
+import { Observable, Subject } from 'rxjs';
 import { LoaderType } from './loader-type';
 import { startWith } from 'rxjs/operators';
 
@@ -8,33 +7,14 @@ import { startWith } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LoaderService {
+  // 'LoaderType' serves as the basis for the css class that will perform the progress view.
   loaderSubject = new Subject<LoaderType>();
-
-  constructor(private http: HttpClient){}
-
-  init(): Observable<LoaderType> {
-    return this.loaderSubject.asObservable().pipe(startWith(LoaderType.STOPPED));
-  }
-  start(){
-    this.loaderSubject.next(LoaderType.LOADING)
-  }
-  end(){
-    this.loaderSubject.next(LoaderType.ENDING)
-  }
-  stop() {
-    this.loaderSubject.next(LoaderType.STOPPED);
-  }
-  fakeJson(): Observable<Object>{
-    // const payload = {
-    //   "token": "RosBdjobtqDbPBUE3rigVg",
-    //   "data": {
-    //     "name": "nameFirst",
-    //     "email": "internetEmail",
-    //     "phone": "phoneHome",
-    //     "_repeat": 7
-    //   }
-    // };
-    // return this.http.post('https://app.fakejson.com/q', payload);
-    return this.http.get('https://jsonplaceholder.typicode.com/posts/1')
-  }
+  // Initializes the loader by turning it into an observable and emitting an event to start as stopped.
+  init(): Observable<LoaderType> { return this.loaderSubject.asObservable().pipe(startWith(LoaderType.STOPPED)); }
+  // Begins and executes the request progress
+  start(){ this.loaderSubject.next(LoaderType.LOADING) }
+  // Prepares progress to be finalized
+  end(){ this.loaderSubject.next(LoaderType.ENDING) }
+  // Stop progress disappearing from view
+  stop() { this.loaderSubject.next(LoaderType.STOPPED); }
 }

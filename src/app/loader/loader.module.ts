@@ -1,4 +1,4 @@
-import {NgModule} from "@angular/core";
+import { NgModule } from "@angular/core";
 import { LoaderComponent } from "./loader.component";
 import { CommonModule } from "@angular/common";
 import { HTTP_INTERCEPTORS } from '@angular/common/http';

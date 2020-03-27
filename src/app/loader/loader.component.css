@@ -1,7 +1,7 @@
 .loader-loading, .loader-ending {
    margin: 0;
    background: linear-gradient(270deg, green,steelblue, slategray);
-   height: 0.2em;  
+   height: 0.3em;  
 }
 .loader-loading{
    animation: progress-loading 5s ease-in;

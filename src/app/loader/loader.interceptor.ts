@@ -10,7 +10,7 @@ import { HttpResponse } from "@angular/common/http";
 import { HttpUserEvent } from "@angular/common/http"
 
 import { LoaderService } from './loader.service';
-import { tap, timeout, catchError, finalize } from 'rxjs/operators';
+import { tap, catchError, finalize } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class LoaderInterceptor implements HttpInterceptor{
@@ -22,9 +22,8 @@ export class LoaderInterceptor implements HttpInterceptor{
 		HttpHeaderResponse | 
 		HttpProgressEvent | 
 		HttpResponse<any> | 
-		HttpUserEvent<any>> {
-         
-      console.log('passei pelo interceptor');
+      HttpUserEvent<any>> 
+   {     
       return next
          .handle(req)
          .pipe(
