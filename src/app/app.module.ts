@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoaderComponent } from './loader/loader.component';
 
 import { LoaderModule } from './loader/loader.module';
+import { NotifierModule } from './notifier/notifier.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LoaderModule } from './loader/loader.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    LoaderModule
+    LoaderModule,
+    NotifierModule
   ],
   providers: [],
   bootstrap: [AppComponent]
