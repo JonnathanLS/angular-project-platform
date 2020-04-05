@@ -1,43 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { NotifierService } from './notifier.service';
-import { map } from 'rxjs/operators';
 import { Notifier } from './notifier';
-import { NotifierType } from './notifier-type';
+import { HttpClient } from '@angular/common/http';
+import { notifierInsertRemoveTrigger } from '../animations/animation';
 
 @Component({
   selector: 'app-notifier',
   templateUrl: './notifier.component.html',
-  styleUrls: ['./notifier.component.css']
+  styleUrls: ['./notifier.component.css'],
+  animations: [ notifierInsertRemoveTrigger ],
 })
 export class NotifierComponent implements OnInit {
-  // notifier$: Observable<string>;
   notifiers: Notifier[] = [];
-  time = 1000;
-
-  constructor(private notifierService: NotifierService) { }
-
+  constructor(private notifierService: NotifierService, private http: HttpClient) { }
   ngOnInit() {
-    this.notifierService.init().subscribe();
+    this.notifierService.init().subscribe(notifier =>{
+      this.notifiers.push(notifier);
+      // setTimeout(()=> this.remove(notifier), notifier.options.millisecs);
+    });
   }
-
+  isOpen = true;
   teste(){
-    console.log('teste component')
-    let nt: Notifier = {
-      type: NotifierType.SUCCESS,
-      message: 'teste'
-    }
-    this.notifiers.push(nt);
-    console.log(this.notifiers);
-    setTimeout(()=> this.remove(nt), this.time);
-    // this.notifierService.teste('teste');
+    this.notifierService.success('teste de sucesso');
+    this.isOpen = !this.isOpen;
   }
 
-  private remove(nt: any) {
-    var idx = this.notifiers.indexOf(nt);
-    if (idx != -1) {
-      return this.notifiers.splice(idx, 1); 
-    }
+  private remove(notififer: Notifier) {
+    const index = this.notifiers.indexOf(notififer);
+    if (index != -1) return this.notifiers.splice(index, 1); 
     return this.notifiers;
   }
 
