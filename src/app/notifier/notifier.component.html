@@ -1,6 +1,7 @@
 <button class="btn btn-info" (click)='teste()'>Notify</button>
 <hr>
-<div @notifierInsertRemoveTrigger *ngFor='let notifier of notifiers' [ngClass]="notifier | classNotififer">
-    <h4>{{ notifier.options.title }}</h4>
-    {{ notifier.message }}
-</div>
+<app-notifier-details
+   *ngFor='let item of notifiers'
+   [notifiers]='item.notifiers'
+   [position]='item.position'>
+</app-notifier-details>

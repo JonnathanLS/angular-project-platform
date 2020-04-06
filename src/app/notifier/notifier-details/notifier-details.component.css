@@ -1,0 +1,39 @@
+.notifier{
+   padding: 0.75rem;
+   margin: 0.3rem;
+   border-radius: 1px;
+}
+.notifier-position{
+   position: fixed;
+}
+.notifier-type-success{
+   background-color: greenyellow;
+}
+.notifier-type-error{
+   background-color: tomato;
+}
+.notifier-type-warning{
+   background-color: orange;
+}
+.notifier-type-info{
+   background-color: lightsteelblue;
+}
+.np-left-top{
+   left: 0;
+   top: 0;
+}
+.np-right-top{
+   right: 0;
+   top: 0;
+}
+.np-left-bottom{
+   left: 0;
+   bottom: 0;
+}
+.np-right-bottom{
+   right: 0;
+   bottom: 0;
+}
+.notifier-full-width{
+   width: 100%;
+}

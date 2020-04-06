@@ -6,12 +6,12 @@ import { Notifier } from './notifier';
 })
 export class ClassNotififerPipe implements PipeTransform {
 
-  transform(notifier: Notifier, ...args: any[]): any {
+  transform(notifier: Notifier, ...args: any[]): string {
     if (!notifier) return null;
     const type = "notifier-type-" + notifier.type;
-    const pos = notifier.options.position;
-    const position = "sticky-top";
-    return `notifier ${type} ${position}`;
+   //  const pos = notifier.options.position;
+   //  const position = "sticky-top";
+    return `notifier ${type}`;
   }
 
 }
