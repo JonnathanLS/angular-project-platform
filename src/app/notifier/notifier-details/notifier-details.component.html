@@ -1,0 +1,9 @@
+<div [ngClass]='position'>
+   <div @notifierInsertRemoveTrigger
+      *ngFor='let notifier of notifiers'
+      [ngClass]="notifier | classNotififer"
+      (click)="close(notifier)">
+      <h4 *ngIf='notifier.options.title'>{{ notifier.options.title }}</h4>
+      {{ notifier.message }}
+   </div>
+</div>

@@ -7,16 +7,17 @@ export enum NotifierType {
     INFO = 'info',
 }
 
-export enum NotififerPosition{
-    TOP = 'top',
-    BOTTOM = 'bottom',
-    RIGHT = 'right',
-    LEFT = 'left',
+export enum NotifierPosition{
+   LEFT_TOP = 'left-top',
+   RIGHT_TOP = 'right-top',
+   LEFT_BOTTOM = 'left-bottom',
+   RIGHT_BOTTOM = 'right-bottom',
 }
 export interface NotifierOptions{
     title?: string;
     millisecs?: number;
-    position?: NotififerPosition;
+    position?: NotifierPosition;
+    fullWidth?: boolean;
 }
 export interface Notifier {
     type: NotifierType;
