@@ -3,28 +3,31 @@ import { Subject, Observable } from 'rxjs';
 import { NotifierType, NotifierPosition, NotifierOptions } from './notifier';
 import { Notifier } from './notifier';
 
-const MILLISECONDS: number = 2000;
-const POSITION: NotifierPosition = NotifierPosition.RIGHT_TOP;
+const MILLISECONDS: number = 3000;
+const POSITION: NotifierPosition = NotifierPosition.BOTTOM;
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotifierService {
    notiferSubject = new Subject<Notifier>();
-
    constructor() { }
-
    init(): Observable<Notifier>{ return this.notiferSubject.asObservable(); }
 
-   success(message: string, options?: NotifierOptions){
-      this.notiferSubject.next(this.setNotifier(message, NotifierType.SUCCESS, options));
+   private subjectNext(type: NotifierType, msg: string, opt?: NotifierOptions){
+      this.notiferSubject.next(this.setNotifier(type, msg, opt)); 
    }
-   error(message: string, options?: NotifierOptions){
-      this.notiferSubject.next(this.setNotifier(message, NotifierType.ERROR, options));
-   }
-   private setNotifier(message: string, type: NotifierType, options?: NotifierOptions): Notifier{
-      //  const newTitle = `${type} Notification !`;
-      const newOptions = options ? options : { title: null, millisecs: MILLISECONDS, position: POSITION }
+   success(message: string, options?: NotifierOptions){ 
+      return this.subjectNext(NotifierType.SUCCESS, message, options) }
+   warning(message: string, options?: NotifierOptions){ 
+      return this.subjectNext(NotifierType.WARNING, message, options) }
+   error(message: string, options?: NotifierOptions){ 
+      return this.subjectNext(NotifierType.ERROR, message, options) }
+   info(message: string, options?: NotifierOptions){ 
+      return this.subjectNext(NotifierType.INFO, message, options) }
+   
+   private setNotifier(type: NotifierType, message: string, options?: NotifierOptions): Notifier{
+      const newOptions: NotifierOptions = { title: null, millisecs: MILLISECONDS, position: POSITION };
       if (options){
          newOptions.title = options.title ? options.title : null;
          newOptions.millisecs = options.millisecs ? options.millisecs : MILLISECONDS;

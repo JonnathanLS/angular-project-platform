@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Notifier } from '../notifier';
+import { Notifier, NotifierPosition } from '../notifier';
 import { NotifierService } from '../notifier.service';
 import { notifierInsertRemoveTrigger } from '../../animations/animation';
 
@@ -13,11 +13,13 @@ export class NotifierDetailsComponent implements OnInit {
    @Input() notifiers: Notifier[];
    @Input() position: string;
 
-   constructor(private serviceNotifier: NotifierService) { }
+   constructor(
+      private serviceNotifier: NotifierService
+   ) { }
 
    ngOnInit() {
-      console.log(this.position)
-      this.position = 'notifier-position np-' + this.position;
+      const position = "notifier-position-" + ( this.position ? this.position : NotifierPosition.TOP );
+      this.position = `notifier-position ${position}`
    }
 
    close(notifier: Notifier){

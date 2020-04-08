@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpInterceptor } from "@angular/common/http";
+import { HttpInterceptor, HttpErrorResponse } from "@angular/common/http";
 import { HttpRequest } from "@angular/common/http";
 import { HttpHandler } from "@angular/common/http";
 import { Observable } from "rxjs";
@@ -28,7 +28,7 @@ export class LoaderInterceptor implements HttpInterceptor{
          .handle(req)
          .pipe(
             tap(()=> this.loadingService.start()), 
-            catchError(error => {throw 'Error Loader Interceptor - For More Details: ' + error;}),
+            catchError((err: HttpErrorResponse) => { throw err }),
             finalize(()=>  {
                this.loadingService.end();
                setTimeout(() => this.loadingService.stop(), 1000);

@@ -8,10 +8,8 @@ export enum NotifierType {
 }
 
 export enum NotifierPosition{
-   LEFT_TOP = 'left-top',
-   RIGHT_TOP = 'right-top',
-   LEFT_BOTTOM = 'left-bottom',
-   RIGHT_BOTTOM = 'right-bottom',
+   TOP = 'top',
+   BOTTOM = 'bottom',
 }
 export interface NotifierOptions{
     title?: string;

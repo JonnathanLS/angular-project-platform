@@ -4,7 +4,7 @@ import { Notifier } from './notifier';
 @Pipe({
   name: 'classNotififer'
 })
-export class ClassNotififerPipe implements PipeTransform {
+export class NotifierPipe implements PipeTransform {
 
   transform(notifier: Notifier, ...args: any[]): string {
     if (!notifier) return null;

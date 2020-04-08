@@ -1,7 +1,13 @@
-<button class="btn btn-info" (click)='teste()'>Notify</button>
+<!-- 
+<br><br><br>
 <hr>
+<button class="btn btn-success" (click)='success()'>Success</button>
+<button class="btn btn-warning" (click)='warning()'>Warning</button>
+<button class="btn btn-danger" (click)='error()'>Error</button>
+<button class="btn btn-info" (click)='info()'>Info</button>
+<hr> -->
 <app-notifier-details
-   *ngFor='let item of notifiers'
-   [notifiers]='item.notifiers'
-   [position]='item.position'>
+   *ngFor='let prop of notifiers'
+   [notifiers]='prop.notifiers'
+   [position]='prop.position'>
 </app-notifier-details>

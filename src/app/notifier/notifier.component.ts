@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NotifierService } from './notifier.service';
 import { Notifier, NotifierPosition } from './notifier';
 import { HttpClient } from '@angular/common/http';
-import { notifierInsertRemoveTrigger } from '../animations/animation';
 
 interface Notifiers {
    position: NotifierPosition;
@@ -14,31 +13,25 @@ interface Notifiers {
    styleUrls: ['./notifier.component.css'],
 })
 export class NotifierComponent implements OnInit {
-
    notifiers: Notifiers[] = [
-      { position: NotifierPosition.LEFT_TOP, notifiers: Array<Notifier>() },
-      { position: NotifierPosition.RIGHT_TOP, notifiers: Array<Notifier>() },
-      { position: NotifierPosition.LEFT_BOTTOM, notifiers: Array<Notifier>() },
-      { position: NotifierPosition.RIGHT_BOTTOM, notifiers: Array<Notifier>() },
+      { position: NotifierPosition.TOP, notifiers: Array<Notifier>() },
+      { position: NotifierPosition.BOTTOM, notifiers: Array<Notifier>() },
    ]
-   constructor(private notifierService: NotifierService, private http: HttpClient) { }
+   constructor(
+      private notifierService: NotifierService,
+      private http: HttpClient
+   ) { this.http.get('https://jsonplaceholder.typicode.com/postss').subscribe()}
    ngOnInit() {
       this.notifierService.init().subscribe(notifier =>{
-         let notifiers = this.notifiers
+         let arrayNotifiers = this.notifiers
             .filter(obj => obj.position === notifier.options.position)[0].notifiers;
-         notifiers = notifiers ? notifiers : [];
-         notifiers.push(notifier);
-         // setTimeout(()=> this.notifierService
-         //    .remove(notifier, notifiers), notifier.options.millisecs);
+         arrayNotifiers = arrayNotifiers ? arrayNotifiers : [];
+         arrayNotifiers.push(notifier);
+         setTimeout( () => this.notifierService.remove(notifier, arrayNotifiers), notifier.options.millisecs);
       });
    }
-
-   teste(){
-      this.notifierService.success('teste de suceso');
-      this.notifierService.error('teste de dasdasdsadasdadasdsadsadasdaserror', { title: 'Titulo Error', fullWidth: true});
-      this.notifierService.success('teste dadsdasdsae error', { title: 'Titulo Error', position: NotifierPosition.LEFT_BOTTOM});
-      this.notifierService.error('teste de error', { title: 'Titulo Error', position: NotifierPosition.RIGHT_BOTTOM});
-      this.notifierService.success('teste dasdasdde error', { title: 'Titulo Error', position: NotifierPosition.RIGHT_BOTTOM, fullWidth: true});
-      this.notifierService.error('testedasdasdasdasdasd de error', { title: 'Titulo Error', position: NotifierPosition.LEFT_TOP});
-   }
+   // success(){ this.notifierService.success('Teste de Sucesso')};
+   // warning(){ this.notifierService.warning('Teste de warning', {title: 'warning', position: NotifierPosition.BOTTOM})};
+   // error(){ this.notifierService.error('Teste de error', {title: 'error', millisecs: 5000})};
+   // info(){ this.notifierService.info('Teste de info', {title: 'info', position: NotifierPosition.BOTTOM, millisecs: 10000})};
 }
